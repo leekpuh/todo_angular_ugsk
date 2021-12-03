@@ -20,7 +20,9 @@ export class TodosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.todos = JSON.parse(localStorage.getItem('todos')??"")??[];
+    if (localStorage.getItem('todos') === null)
+      localStorage.setItem('todos', "[]");
+    this.todos = JSON.parse(localStorage.getItem('todos')??"")
   }
 
   toggleDone(id: number) {
@@ -45,7 +47,6 @@ export class TodosComponent implements OnInit {
     });
     this.inputTodo = "";
     event.preventDefault();
-    this.todos.sort((x1, x2) => ((x1.completed ? 1 : 0) < (x2.completed ? 1 : 0)) ? -1 : 1)
     localStorage.setItem('todos', JSON.stringify(this.todos));
   }
 
