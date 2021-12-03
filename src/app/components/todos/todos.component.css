@@ -1,0 +1,51 @@
+.todo-page {
+    display: flex;
+    justify-content: center;
+}
+
+.todos {
+    width: 800px;
+    height: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 30px;
+    filter: drop-shadow(10px 10px 10px rgba(31, 31, 31, 0.4));
+    padding-bottom: 20px;
+}
+
+.add-form {
+    display: flex;
+    justify-content: center;
+}
+
+.mat-form-field {
+    width: 80%;
+    margin-right: 10px;
+}
+
+.todo-submit {
+    width: 130px;
+    height: 50px;
+    margin-top: 0.25em;
+}
+
+.todo-text {
+    width: 100%;
+    display: flex;
+}
+
+.todo-btn {
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.todo.done .content {
+    color: rgb(202, 201, 201);
+}

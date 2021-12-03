@@ -1,0 +1,42 @@
+<div class="todo-page">
+    <mat-card class="todos">
+        <h1>Список задач</h1>
+
+        <form class="add-form" (submit)="addTodo($event)">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Введите название задачи</mat-label>
+                <input matInput #input maxlength="60" name="inputTodo" class="todo-input" [(ngModel)]="inputTodo"
+                    (keyup.enter)="inputTodo=''">
+                <mat-hint>Максимум 60 знаков</mat-hint>
+            </mat-form-field>
+            <button mat-raised-button [disabled]="inputTodo==''" color="primary" class="todo-submit">
+                <mat-icon>add</mat-icon> Добавить
+            </button>
+        </form>
+        <mat-nav-list>
+            <mat-list-item *ngFor="let todo of todos; let i = index;" class="todo {{ (todo.completed ? 'done' : '') }}">
+                <div class="todo-text">
+                    <div class="content" *ngIf="todo.editMode">
+                        <mat-form-field>
+                            <input matInput maxlength="60" [(ngModel)]="todo.content" />
+                        </mat-form-field>
+                    </div>
+                    <div class="content" *ngIf="!todo.editMode">
+                        <mat-checkbox (ngModelChange)="toggleDone(i)" [(ngModel)]="todo.completed">{{ todo.content }}
+                        </mat-checkbox>
+                    </div>
+                </div>
+                <div class="todo-btn">
+                    <button *ngIf="!todo.completed" mat-button color="primary" class="edit" (click)="toggleEdit(i)">
+                        <mat-icon *ngIf="!todo.editMode">edit</mat-icon>
+                        <mat-icon *ngIf="todo.editMode">save</mat-icon>
+                    </button>
+                    <button mat-button color="warn" class="delete" (click)="deleteTodo(i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-nav-list>
+    </mat-card>
+</div>
